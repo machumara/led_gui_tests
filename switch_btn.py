@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import colorchooser
 import customtkinter as ctk
 
 
@@ -8,7 +9,14 @@ class SwitchBtn(ctk.CTkButton):
         self.frame = frame
         self.on = False
         self.color = 'Black'
+        self.color_pick = 'Red'
         ctk.CTkButton.__init__(self, self.frame, text=name, width=width, fg_color=self.color, command=self.clicked)
+        self.bind("<Button-3>", self.pick_color)
+
+    def pick_color(self, event):
+        self.color_pick = colorchooser.askcolor()[1]
+        self.configure(fg_color=self.color_pick)
+        self.frame.update()
 
     def clicked(self):
         if self.on:
@@ -16,7 +24,7 @@ class SwitchBtn(ctk.CTkButton):
             self.color = "Black"
         else:
             self.on = True
-            self.color = "Red"
+            self.color = self.color_pick
         self.configure(fg_color=self.color)
         self.frame.update()
 
