@@ -15,7 +15,7 @@ class SwitchBtn(ctk.CTkButton):
 
     def pick_color(self, event):
         self.color_pick = colorchooser.askcolor()[1]
-        self.configure(fg_color=self.color_pick)
+        self.configure(fg_color=self.color)
         self.frame.update()
 
     def clicked(self):
